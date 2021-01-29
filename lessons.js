@@ -8,6 +8,23 @@ Vue.component('cartItems', {
     props: ['title']
   })
 
+  let store = new Vue({
+    data: { tproducts: {} },
+    // this function runs when creating the Vue instance
+    created: function() {
+        // replace the URL to your Heroku app and route
+        fetch('https://cst3145-appmodulec2.herokuapp.com/collection/products').then(
+            function (response) {
+                response.json().then(
+                    function (json) {
+                        // note that we used 'store.product' instead of 'this.product'
+                        store.tproducts = json;
+                    });
+                })
+        }
+    });
+
+
 let webstore = new Vue({
     el: '#app'
 }) //app id
