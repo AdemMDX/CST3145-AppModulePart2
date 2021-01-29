@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>product</title>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="products.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+
+<body>
+
+    <div id="app"></div>
+    <!-- gets app id -->
+    <div id="app2">
+        <!-- gets app2 id -->
+
+
+        <header>
+        <h1 v-text='sitename'></h1>
+        </header>
+
+
+        <div v-if='showProduct'>
+                    <!-- checkout button -->
+        <!-- only show if there is at least 1 item in cart -->
+        <button @click='showCheckout' v-if='canGoToCheckout'>{{this.items.length}} <span class="fas fa-cart-plus"> </span>
+            Checkout Page</button>
+      <button disabled='disabled' v-else>
+        <span class="fas fa-cart-plus"> </span> Checkout Page
+      </button>
+      <p>
+        <strong>Sort:</strong>
+        <select v-model='order.sort'>
+            <option disabled value="">Sort</option>
+            <option v-for="(sort, key) in sort"
+            v-bind:value="sort">
+            {{key}}
+            </option>
+        </select>
+    </p>
+
+    <div v-if='noSort'>
+    <p>
+        <input type="radio" id='Asc' value='Asc' v-model='order.ascending'>
+        <label for="Asc">Ascending</label>
+        <input type="radio" id='Des' value='Des' v-model='order.ascending'>
+        <label for="Des">Descending</label>
+    </p>
+    </div>
+    <div v-else>
+        <input disabled='disabled' type="radio">
+        <label for="Asc">Ascending</label>
+        <input disabled='disabled' type="radio">
+        <label for="Des">Descending</label>
+    </div>
+    
+
+ <!--
+        <p>Cart: {{items}}</p>
+        -->
+
+        <!-- <ul>
+            <li v-for="c2 in cart">{{cart}}</li>
+        </ul>
+        -->
+
+
+      
+
+        <main>
+
+            <div v-for='product in products'>
+                <div v-if='sortedProducts'>
+
+        <figure>
+            <img v-bind:src="product.image" alt="product image" width="8%" height="auto">
+            <!-- v-bind binds (calls the image) the image from product to html -->
+          </figure>
+          <h2 v-text="product.title"></h2>
+          <!-- v-tect treated only as text not html -->
+          <p v-html="product.description"></p>
+          <!-- v-html treated as html -->
+          <p>Price: {{product.price}}</p>
+          <!-- v-html could still work instead -->
+          <!-- price is the tect that displays while product.price displays it -->
+          <p>Available Spaces: {{product.availableInventory}}</p>
+
+          <button @click='addToCart(product);addNewitem(product)' v-if='canAddToCart(product)'>
+              Add to cart</button>
+        <button disabled='disabled' v-else>Add to cart</button>
+        
+        <span v-if="product.availableInventory === cartCount(product.title + ' ' + product.price)"> 
+            All out!</span>
+
+        <span v-else-if='product.availableInventory - cartCount(product.title + " " + product.price) < 5'>
+            Only {{product.availableInventory - cartCount(product.title + ' ' + product.price)}} left!
+        </span>
+
+        <span v-else>Buy now!</span>
+
+        <div>
+            <span v-for='n in product.rating'>★</span>
+            <span v-for='n in 5-product.rating'>☆</span>
+        </div>
+
+    </div> <!-- end of sort -->
+        </div> <!-- end of 'for' products -->
+
+
+    </div>
+    <div v-else>
+        <!-- checkout page -->
+
+        <button @click='showCheckout'>
+            Lessons Page</button>
+
+        <br></br>
+        <div style="float:left;width:400px;height:400px;">
+        <h2><em>Checkout Page</em></h2>
+        <p>
+            <strong>*First Name:</strong>
+            <input v-model.trim='order.firstname' @keypress="onlyLetter($event)">
+        </p>
+        <p>
+            <strong>*Last Name:</strong>
+            <input v-model.trim='order.lastname' @keypress="onlyLetter($event)">
+        </p>
+
+        <p>
+            <strong>Address:</strong>
+            <input v-model='order.address'>
+        </p>
+
+        <p>
+            <strong>City:</strong>
+            <input v-model='order.city'>
+        </p>
+
+        <p>
+            <strong>*Phone Number:</strong>
+            <input v-model.number='order.phone' type='number'>
+        </p>
+
+        <!--
+        <p>
+            <strong>Zip/Postal Code:</strong>
+            <input v-model.number='order.zip'>         
+        </p>
+ 
+        <p>
+            <strong>State:</strong>
+            <select v-model='order.state'>
+                <option disabled value="">State</option>
+                <option v-for="(state, key) in states"
+                v-bind:value="state">
+                {{key}}
+                </option>
+            </select>
+        </p>
+
+        <p>
+            <input type="radio" id='home' value='home' v-model='order.method'>
+            <label for="home">Home</label>
+            <input type="radio" id='business' value='business' v-model='order.method'>
+            <label for="business">Business</label>
+        </p>
+        -->
+
+        <p>
+            <input type="checkbox" id='gift'
+            v-model='order.gift'
+            :true-value = 'order.sendGift'
+            :false-value = 'order.dontSendGift'
+            >
+            <label for="gift">Ship As Gift?</label>
+        </p>
+
+    </div>
+
+    <div style="float:left">
+        <h2>Order Information</h2>
+        <p>First Name: {{order.firstname}}</p>
+        <p>Last Name: {{order.lastname}}</p>
+        <p>Address: {{order.address}}</p>
+        <p>City: {{order.city}}</p>
+        <p>Phone: {{order.phone}}</p>
+        <p>Ship As A Gift?: {{order.gift}}</p>
+        <p>Products in Basket: {{items}}</p>
+        <!-- 
+        <p>Zip: {{order.zip}}</p> 
+        <p>State: {{order.state}}</p>
+        <p>Ship As A Gift?: {{order.gift}}</p>
+        <p>Home Or Business: {{order.business}}</p>
+        -->
+
+    </div>
+
+    <div style="float:left">
+    <button disabled='disabled' v-if='checkName'>
+        Submit Order
+    </button>
+  <button @click='showSubmit' v-else>
+    Submit Order
+    </button>
+    </div>
+
+
+    
+    <div style="float:left">
+  <ul>
+    <li
+      is="cartItems"
+      v-for="(item, index) in items"
+      v-bind:title="items[index]"
+      v-on:remove="items.splice(index, 1)"
+    ></li>
+  </ul>
+  </div>
+  
+
+    </div>
+
+    
+
+        </main>
+    </div>
+
+    
+
+    <script type="module" src="lessons.js"></script>
+
+
+
+</body>
+</html>
