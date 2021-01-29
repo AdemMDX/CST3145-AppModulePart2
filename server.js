@@ -8,6 +8,14 @@ MongoClient.connect('mongodb+srv://MongoUser:Dg3w3l9mmpYB5jY3@clusterapp.frsqz.m
     db = client.db('MongoDatabase');
 });
 
+app.use(function(req, res, next) {
+    // allow different IP address
+    res.header("Access-Control-Allow-Origin", "*");
+    // allow different header fields
+    res.header("Access-Control-Allow-Headers", "*");
+    next();
+});
+
 app.use(express.json());
 
 app.param('collectionName', (req, res, next, collectionName) => {
@@ -71,14 +79,6 @@ app.delete('/collection/:collectionName/:id', (req, res, next) => {
 //delete document with this id value
 //same as put which adds except delete
 //delete whole thing
-
-app.use(function(req, res, next) {
-    // allow different IP address
-    res.header("Access-Control-Allow-Origin", "*");
-    // allow different header fields
-    res.header("Access-Control-Allow-Headers", "*");
-    next();
-});
 
 const port = process.env.PORT || 3000;
 app.listen(port), ()=> {
