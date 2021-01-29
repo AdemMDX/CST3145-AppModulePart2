@@ -118,6 +118,9 @@
         </ul>
     </div>
 
+    <p>The response: <span id='response'></span></p>
+    <p>Error: <span id='error'></span></p>
+
 
 
     </div>
@@ -288,9 +291,21 @@
         });
     }//post function
 
+    /*
     fetch(fetchPost)
   .then(response => response.json())
   .then(data => console.log(data));
+  */
+
+    fetch(fetchPost)
+  .then(response => response.json())
+  .then(responseJSON => {
+    console.log('Success:', responseJSON);
+    document.getElementById('response').innerText = JSON.stringify(responseJSON)
+        })
+        .catch((error) => {
+            document.getElementById('error').innerText = error;
+        });
 
     </script>
 
