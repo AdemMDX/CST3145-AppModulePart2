@@ -114,7 +114,7 @@
 
     <div id="app3">
         <ul>
-            <li>Title: {{productStore}}</li>
+            <li>Title: {{testProducts}}</li>
         </ul>
     </div>
 
@@ -269,22 +269,40 @@
         });
     }//post function
 
-    let store = new Vue({
-
-        el: '#app3',
-        data: {
-            productStore: {}
+    function getData() {
+        fetch(fetchPost, {
+        method: 'GET', // set the HTTP method as 'POST'
+        headers: {
+            'Content-Type': 'application/json', // set the data type as JSON
         },
-        created: function () {
+        body: JSON.stringify(testProduct), // need to stringify the JSON object
+        })
+
+        .then(response => response.json())
+        .then(responseJSON => {
+        console.log('Success:', responseJSON);
+        document.getElementById('response').innerText = JSON.stringify(responseJSON)
+        })
+        .catch((error) => {
+            document.getElementById('error').innerText = error;
+        });
+    }//post function
+
+    let store = new Vue({
+        data: { testProducts: {} },
+        // this function runs when creating the Vue instance
+        created: function() {
+            // replace the URL to your Heroku app and route
             fetch('https://cst3145-appmodulec2.herokuapp.com/collection/products').then(
                 function (response) {
                     response.json().then(
                         function (json) {
-                            store.productStore = json;
+                            // note that we used 'store.product' instead of 'this.product'
+                            store.products = json;
                         });
-                });
-        }
-    });
+                    })
+            }
+        });
 
     </script>
 
