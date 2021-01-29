@@ -72,20 +72,22 @@
 
         <main>
 
+
+            <!--
             <div v-for='product in products'>
                 <div v-if='sortedProducts'>
 
         <figure>
             <img v-bind:src="product.image" alt="product image" width="8%" height="auto">
-            <!-- v-bind binds (calls the image) the image from product to html -->
+            <!-- v-bind binds (calls the image) the image from product to html 
           </figure>
           <h2 v-text="product.title"></h2>
-          <!-- v-tect treated only as text not html -->
+          <!-- v-tect treated only as text not html 
           <p v-html="product.description"></p>
-          <!-- v-html treated as html -->
+          <!-- v-html treated as html 
           <p>Price: {{product.price}}</p>
           <!-- v-html could still work instead -->
-          <!-- price is the tect that displays while product.price displays it -->
+          <!-- price is the tect that displays while product.price displays it 
           <p>Available Spaces: {{product.availableInventory}}</p>
 
           <button @click='addToCart(product);addNewitem(product)' v-if='canAddToCart(product)'>
@@ -106,9 +108,9 @@
             <span v-for='n in 5-product.rating'>☆</span>
         </div>
 
-    </div> <!-- end of sort -->
-        </div> <!-- end of 'for' products -->
-
+    </div> <!-- end of sort 
+        </div> <!-- end of 'for' products 
+    -->
 
     </div>
     <div v-else>
