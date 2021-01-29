@@ -72,6 +72,7 @@ app.delete('/collection/:collectionName/:id', (req, res, next) => {
 //same as put which adds except delete
 //delete whole thing
 
-app.listen(3000, function() {
+const port = process.env.PORT || 3000;
+app.listen(port), ()=> {
     console.log("Express server on port 3000");
-});
+};
