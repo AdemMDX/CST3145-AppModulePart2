@@ -274,34 +274,10 @@
 */
     function getData() {
         fetch(fetchPost, {
-        method: 'GET', // set the HTTP method as 'POST'
-        headers: {
-            'Content-Type': 'application/json', // set the data type as JSON
-        },
-        body: JSON.stringify(testProduct), // need to stringify the JSON object
-        })
-
-        .then(response => response.json())
-        .then(responseJSON => {
-        console.log('Success:', responseJSON);
-        document.getElementById('response').innerText = JSON.stringify(responseJSON)
-        })
-        .catch((error) => {
-            document.getElementById('error').innerText = error;
-        });
-    }//post function
-
-    /*
-    fetch(fetchPost)
-  .then(response => response.json())
-  .then(data => console.log(data));
-  */
-
-    fetch(fetchPost, {
     method: 'GET', // set the HTTP method as 'POST'
         headers: {
             'Content-Type': 'application/json', // set the data type as JSON
-        },
+        }
     })
   .then(response => response.json())
   .then(responseJSON => {
@@ -311,6 +287,28 @@
         .catch((error) => {
             document.getElementById('error').innerText = error;
         });
+    }//end of get function
+
+    /*
+    fetch(fetchPost)
+  .then(response => response.json())
+  .then(data => console.log(data));
+  */
+
+
+  function fetchData() {
+    fetch(fetchPost)
+  .then(response => response.json())
+  .then(responseJSON => {
+    console.log('Success:', responseJSON);
+    document.getElementById('response').innerText = JSON.stringify(responseJSON)
+        })
+        .catch((error) => {
+            document.getElementById('error').innerText = error;
+        });
+  }//end of fetch data
+
+  
 
     </script>
 
