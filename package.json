@@ -1,8 +1,8 @@
 {
   "name": "api-demo",
   "version": "1.0.0",
-  "description": "This is a read me file",
-  "main": "app.js",
+  "description": "",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
