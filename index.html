@@ -297,7 +297,12 @@
   .then(data => console.log(data));
   */
 
-    fetch(fetchPost)
+    fetch(fetchPost, {
+    method: 'GET', // set the HTTP method as 'POST'
+        headers: {
+            'Content-Type': 'application/json', // set the data type as JSON
+        },
+    })
   .then(response => response.json())
   .then(responseJSON => {
     console.log('Success:', responseJSON);
