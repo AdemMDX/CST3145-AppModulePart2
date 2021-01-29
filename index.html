@@ -114,7 +114,7 @@
 
     <div id="app3">
         <ul>
-            <li>Title: {{testProducts}}</li>
+            <li>Title: {{products}}</li>
         </ul>
     </div>
 
@@ -289,7 +289,7 @@
     }//post function
 
     let store = new Vue({
-        data: { testProducts: {} },
+        data: { products: {} },
         // this function runs when creating the Vue instance
         created: function() {
             // replace the URL to your Heroku app and route
@@ -298,7 +298,7 @@
                     response.json().then(
                         function (json) {
                             // note that we used 'store.product' instead of 'this.product'
-                            store.testProducts = json;
+                            store.products = json;
                         });
                     })
             }
