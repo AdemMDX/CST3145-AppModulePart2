@@ -26,7 +26,8 @@
         <div v-if='showProduct'>
                     <!-- checkout button -->
         <!-- only show if there is at least 1 item in cart -->
-        <button @click='showCheckout' v-if='canGoToCheckout'>{{this.items.length}} <span class="fas fa-cart-plus"> </span>
+        <button @click='showCheckout'><span class="fas fa-cart-plus"> </span>
+            <!-- v-if='canGoToCheckout' {{this.items.length}} -->
             Checkout Page</button>
       <button disabled='disabled' v-else>
         <span class="fas fa-cart-plus"> </span> Checkout Page
