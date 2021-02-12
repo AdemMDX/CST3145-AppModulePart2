@@ -217,7 +217,7 @@
     <button disabled='disabled' v-if='checkName'>
         Submit Order
     </button>
-  <button onclick='postData(); putOrder2();' @click='showSubmit' v-else>
+  <button onclick='postData(); putOrder();' @click='showSubmit' v-else>
     Submit Order
     </button>
     </div>
@@ -287,12 +287,12 @@
 
     function putOrder() {
         //update lessons
-        fetch(fetchPost2, {
+        fetch(fetchPost3, {
         method: 'PUT', // set the HTTP method as 'POST'
         headers: {
             'Content-Type': 'application/json', // set the data type as JSON
         },
-        body: JSON.stringify(updateProduct), // need to stringify the JSON object
+        body: JSON.stringify({ firstName: 'React PUT Request Example' }), // need to stringify the JSON object
         })
 
         .then(response => response.json())
