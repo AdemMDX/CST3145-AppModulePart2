@@ -255,6 +255,10 @@
         const fetchPost = 'https://cst3145-appmodulec2.herokuapp.com/collection/products';
         //define fetch as variable
         const fetchPost2  = 'https://cst3145-appmodulec2.herokuapp.com/collection/orders';
+        //fetch order
+
+        const fetchPost3  = 'https://cst3145-appmodulec2.herokuapp.com/collection/orders/602688ba9db2211538c8a740';
+        //update order
 
         /*const updateProduct = {
             firstName: document.querySelector("test").value
@@ -283,7 +287,7 @@
 
     function putOrder() {
         //update lessons
-        fetch(fetchPost, {
+        fetch(fetchPost2, {
         method: 'PUT', // set the HTTP method as 'POST'
         headers: {
             'Content-Type': 'application/json', // set the data type as JSON
@@ -299,7 +303,19 @@
         .catch((error) => {
             document.getElementById('error').innerText = error;
         });
-    }//post function
+    }//put function
+
+    function putOrder2() {
+
+         // Simple PUT request with a JSON body using fetch
+    const requestOptions = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ firstName: 'React PUT Request Example' })
+    };
+    fetch('https://cst3145-appmodulec2.herokuapp.com/collection/orders/602688ba9db2211538c8a740', requestOptions)
+        .then(response => response.json());
+    }
 
 
     function getData() {
