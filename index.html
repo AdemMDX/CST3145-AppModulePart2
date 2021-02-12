@@ -313,9 +313,9 @@
     const requestOptions = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ firstName: 'React PUT Request Example' })
+        body: JSON.stringify({ availableInventory: 9 })
     };
-    fetch('https://cst3145-appmodulec2.herokuapp.com/collection/orders/602688ba9db2211538c8a740', requestOptions)
+    fetch('https://cst3145-appmodulec2.herokuapp.com/collection/products/60132b2ebaf7ae3f88ff0a89', requestOptions)
         .then(response => response.json());
     }
 
