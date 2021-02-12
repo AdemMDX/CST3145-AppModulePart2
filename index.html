@@ -217,7 +217,7 @@
     <button disabled='disabled' v-if='checkName'>
         Submit Order
     </button>
-  <button @click='showSubmit(); postData();' v-else>
+  <button @click='postData' v-else>
     Submit Order
     </button>
     </div>
@@ -273,8 +273,6 @@
             document.getElementById('error').innerText = error;
         });
     }//post function
-
-    postData();
 
     function getData() {
         fetch(fetchPost, {
