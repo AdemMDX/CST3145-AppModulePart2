@@ -256,6 +256,10 @@
         //define fetch as variable
         const fetchPost2  = 'https://cst3145-appmodulec2.herokuapp.com/collection/orders';
 
+        const updateProduct = {
+            numberofSpace: document.querySelector(1).value
+        };
+
 
         function postData() {
         fetch(fetchPost2, {
@@ -275,6 +279,28 @@
             document.getElementById('error').innerText = error;
         });
     }//post function
+
+
+    function putOrder() {
+        //update lessons
+        fetch(fetchPost, {
+        method: 'PUT', // set the HTTP method as 'POST'
+        headers: {
+            'Content-Type': 'application/json', // set the data type as JSON
+        },
+        body: JSON.stringify(updateProduct), // need to stringify the JSON object
+        })
+
+        .then(response => response.json())
+        .then(responseJSON => {
+        console.log('Success:', responseJSON);
+        document.getElementById('response').innerText = JSON.stringify(responseJSON)
+        })
+        .catch((error) => {
+            document.getElementById('error').innerText = error;
+        });
+    }//post function
+
 
     function getData() {
         fetch(fetchPost, {
