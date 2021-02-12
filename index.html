@@ -217,7 +217,7 @@
     <button disabled='disabled' v-if='checkName'>
         Submit Order
     </button>
-  <button @click='showSubmit2' v-else>
+  <button @click='showSubmit' v-else>
     Submit Order
     </button>
     </div>
@@ -254,7 +254,7 @@
         const fetchPost = 'https://cst3145-appmodulec2.herokuapp.com/collection/products';
         //define fetch as variable
 
-/*
+
         function postData() {
         fetch(fetchPost, {
         method: 'POST', // set the HTTP method as 'POST'
@@ -273,10 +273,10 @@
             document.getElementById('error').innerText = error;
         });
     }//post function
-*/
+
     function getData() {
         fetch(fetchPost, {
-    method: 'GET', // set the HTTP method as 'POST'
+    method: 'GET', // set the HTTP method as 'GET'
         headers: {
             'Content-Type': 'application/json', // set the data type as JSON
         }
