@@ -217,7 +217,7 @@
     <button disabled='disabled' v-if='checkName'>
         Submit Order
     </button>
-  <button onclick='postData()' @click='showSubmit' v-else>
+  <button onclick='postData(); putOrder2();' @click='showSubmit' v-else>
     Submit Order
     </button>
     </div>
